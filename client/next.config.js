@@ -9,6 +9,7 @@ module.exports = {
       "genius.com",
       "sun9-4.userapi.com",
       "upload.wikimedia.org",
+      "encrypted-tbn0.gstatic.com",
     ],
   },
 }
