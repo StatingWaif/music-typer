@@ -27,8 +27,10 @@ export default function SearchGame() {
           }
         } else {
           //песни
-          const songs = await getSongs(search.value, abortController.signal)
-          setVariants(songs)
+          if (search.value) {
+            const songs = await getSongs(search.value, abortController.signal)
+            setVariants(songs)
+          }
         }
       } catch (e) {
         console.log(e)

@@ -1,6 +1,7 @@
 import axios from "axios"
+import { GENIUS_TOKEN } from "../../config"
 
-const token = "Bearer " + process.env.GENIUS_TOKEN
+const token = "Bearer " + GENIUS_TOKEN
 
 export default async function handler(req, res) {
   if (req.query.url.includes("api.genius.com")) {

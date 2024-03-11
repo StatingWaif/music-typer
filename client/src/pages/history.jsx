@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Card from "../components/card"
-import gameData from "../components/utils/gameData"
+import getSongById from "../services/genius/getSongById"
 
 export default function History() {
   const [data, setData] = useState([])
@@ -15,7 +15,7 @@ export default function History() {
       "2920329",
     ]
     ids.forEach((id) => {
-      gameData(id)
+      getSongById(id)
         .then((music) =>
           // data.push({ id: id, img: music.name, name: music.name })
           setData((prev) => [
