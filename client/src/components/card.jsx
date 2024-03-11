@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import clsx from "clsx"
 import Button from "./ui/button"
-import isLanguageRegular from "../utils/isLanguageRegular"
+import usedLanguages from "../utils/usedLanguages"
 import formatDate from "../utils/formatDate"
 
 export default function Card({

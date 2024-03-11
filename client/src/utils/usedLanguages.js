@@ -1,4 +1,4 @@
-export default function isLanguageRegular(lyrics) {
+export default function usedLanguages(lyrics) {
   const regex = /^[\dа-яёА-ЯЁa-zA-Z.,!?;:'"()@#-=_$%^&*\[\]\/{}\s]+$/
   const rus = /[а-яёА-ЯЁ]/
   const eng = /[a-zA-Z]/

@@ -1,7 +1,5 @@
-import formatDate from "./formatDate"
-import getLyrics from "./getLyrics"
-
-export default async function choiceMusicData(songQuery, signal) {
+import getSongLyricsByUrl from "./getSongLyricsByUrl"
+export default async function getSongs(songQuery, signal) {
   // try {
   const data = await fetch(
     `/api/genius?url=https://api.genius.com/search?q=${songQuery}`,
@@ -13,17 +11,15 @@ export default async function choiceMusicData(songQuery, signal) {
     hits.map(async (hit) => {
       const data = hit.result
       const thumbnail = data.song_art_image_thumbnail_url
+      const img = data.song_art_image_url
       const name = data.full_title
       const id = data.id
       const date = data.release_date_components
       const pageViews = data.stats.pageviews
-      //
-      const rawLyrics = await getLyrics(data.url)
+      const rawLyrics = (await getSongLyricsByUrl(data.url)) || ""
       const lyrics = rawLyrics.split("\n").filter((line) => line.trim())
-      //
 
-      // return { id: id, name: name, thumbnail: thumbnail, lyrics: lyrics }
-      return { id, name, thumbnail, lyrics, date, pageViews }
+      return { id, name, thumbnail, img, lyrics, date, pageViews } //возвращать внутри объект с additional инфой(date, pageViews)
     })
   )
   return songs

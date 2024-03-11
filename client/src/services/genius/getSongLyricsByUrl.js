@@ -1,7 +1,7 @@
 import axios from "axios"
 import cheerio from "cheerio"
-
-export default async function getLyrics(url) {
+import formatLyrics from "../../utils/formatLyrics"
+export default async function getSongLyricsByUrl(url) {
   const requestUrl = `/api/genius?url=${url}`
   try {
     let { data } = await axios.get(requestUrl)
@@ -23,17 +23,7 @@ export default async function getLyrics(url) {
       return null
     }
     //еще квадратные штуки выдавать и в одном объекте
-    return lyrics
-      .trim()
-      .replaceAll(/\[.*?\]/g, "")
-      .replaceAll(" ", " ")
-      .replaceAll(" ", " ")
-      .replaceAll(/ +/g, " ")
-      .replaceAll(/[«»“„]/g, '"')
-      .replaceAll("’", "'")
-      .replaceAll(/[–—]/g, "-")
-      .replaceAll("…", "...")
-      .replaceAll(/ ?\(.*\)/g, "") //убрал скобочки с бэками
+    return formatLyrics(lyrics)
   } catch (e) {
     console.error(e)
   }

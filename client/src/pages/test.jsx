@@ -1,25 +1,12 @@
 import { useState, useEffect } from "react"
 import { observer } from "mobx-react-lite"
-import Image from "next/image"
-import { useRouter } from "next/router"
-import gameStore from "../store/gameStore"
-import MainGameSkeleton from "../components/skeletons/mainGameSkeleton"
-import gameData from "../utils/gameData"
-import getPoem from "../utils/getPoem"
-import GameInfo from "../components/game/gameInfo"
-// import DrawText from "../components/game/drawText"
-import Input from "../components/game/input"
-import choicePoemData from "../utils/choicePoemData"
-import isLanguageRegular from "../utils/isLanguageRegular"
-import getPoems from "../utils/getPoems"
-import Card from "../components/card"
 import useInput from "../hooks/useInput"
-import SearchGame from "../components/searchGame"
+import SearchGame from "../components/searchGame/searchGame"
 
 export default observer(function Test() {
   const [poems, setPoems] = useState([])
   const search = useInput("")
-  // console.log(isLanguageRegular(test_string))
+  // console.log(usedLanguages(test_string))
   useEffect(() => {
     ;(async () => {
       // const data = await choicePoemData("Николай Гумилев")

@@ -10,6 +10,7 @@ module.exports = {
       "sun9-4.userapi.com",
       "upload.wikimedia.org",
       "encrypted-tbn0.gstatic.com",
+      "rustih.ru",
     ],
   },
 }

@@ -1,12 +1,9 @@
 import { useRouter } from "next/router"
 import Game from "../components/game/game"
-import Search from "../components/search"
+import { SearchGame } from "../components/searchGame"
 
 export default function Play() {
   const router = useRouter()
-  const songId = router.query.id
-  const poem = router.query.poem
-  return (
-    <>{songId || poem ? <Game songId={songId} poem={poem} /> : <Search />}</>
-  )
+  const id = router.query.id
+  return <>{id ? <Game id={id} /> : <SearchGame />}</>
 }
