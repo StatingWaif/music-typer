@@ -4,6 +4,9 @@ import getAuthorImg from "./getAuthorImg"
 import formatLyrics from "../../utils/formatLyrics"
 
 export default async function getPoemByUrl(link) {
+  link = link.includes(`https://rustih.ru/`)
+    ? link
+    : `https://rustih.ru/${link}`
   const { data } = await axios.get(`api/rustihPage?url=${link}`)
   const $ = cheerio.load(data)
 

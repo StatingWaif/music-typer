@@ -12,10 +12,10 @@ import gameStore from "../../store/gameStore"
 const SongCover = ({ width = 400, height = 400 }) => (
   <span className="mb-5">
     <Image
-      src={gameStore.songImg}
+      src={gameStore.gameImg}
       width={width}
       height={height}
-      alt={`cover of ${gameStore.songName || "song"}`}
+      alt={`cover of ${gameStore.gameName || "game"}`}
       className="rounded-md"
     />
   </span>

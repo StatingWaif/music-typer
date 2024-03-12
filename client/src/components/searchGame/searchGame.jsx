@@ -47,7 +47,7 @@ export default function SearchGame() {
   return (
     <div className="flex flex-col">
       <div className="flex justify-center mt-10 gap-5">
-        <input {...search} />
+        <input {...search} placeholder="Поиск" />
       </div>
       <div className="pt-5 self-center flex gap-2 text-2xl">
         <p>Песни</p>
@@ -59,7 +59,7 @@ export default function SearchGame() {
       ) : (
         <>
           {variants.length ? (
-            <DrawVariants variants={variants} />
+            <DrawVariants variants={variants} toggle={toggle.isChecked} />
           ) : (
             <NotFoundWindow />
           )}

@@ -1,6 +1,5 @@
 import getSongLyricsByUrl from "./getSongLyricsByUrl"
 export default async function getSongs(songQuery, signal) {
-  // try {
   const data = await fetch(
     `/api/genius?url=https://api.genius.com/search?q=${songQuery}`,
     { signal }

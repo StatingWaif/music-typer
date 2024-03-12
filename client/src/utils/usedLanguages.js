@@ -1,5 +1,5 @@
 export default function usedLanguages(lyrics) {
-  const regex = /^[\dа-яёА-ЯЁa-zA-Z.,!?;:'"()@#-=_$%^&*\[\]\/{}\s]+$/
+  const regex = /^[\dа-яёА-ЯЁa-zA-Z.,!?`;:'"()@#-=_$%^&*\[\]\/{}\s]+$/
   const rus = /[а-яёА-ЯЁ]/
   const eng = /[a-zA-Z]/
   let hasRus = false
@@ -7,7 +7,6 @@ export default function usedLanguages(lyrics) {
   let hasOther = false
 
   lyrics.forEach((line, index) => {
-    // console.log(`${index} - ${hasOther}`)
     hasRus = hasRus || rus.test(line)
     hasEng = hasEng || eng.test(line)
     hasOther = hasOther || !regex.test(line)

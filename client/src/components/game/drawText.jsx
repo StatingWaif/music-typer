@@ -1,7 +1,6 @@
 import clsx from "clsx"
 import { observer } from "mobx-react-lite"
 import gameStore from "../../store/gameStore"
-// import gameStore from "../store/gameStore"
 
 export default observer(function DrawText() {
   const numOfStrings = 4

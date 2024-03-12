@@ -14,7 +14,8 @@ const getPoems = async (q, signal) => {
     }
     return poem
   })
-
-  return (await Promise.all(poemPromises)).filter((poem) => poem.lyrics.length)
+  return poemPromises
+    ? (await Promise.all(poemPromises)).filter((poem) => poem.lyrics.length)
+    : []
 }
 export default getPoems

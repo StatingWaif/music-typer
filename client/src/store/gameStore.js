@@ -5,8 +5,8 @@ class GameStore {
   indexOfCurrentLine = 0
   indexOfCurrentWord = 0
   mistakes = 0
-  songImg = ""
-  songName = ""
+  gameImg = ""
+  gameName = ""
   currentSpeed = 0
   userInput = ""
   isWrong = false
@@ -15,28 +15,26 @@ class GameStore {
   seconds = 0
   isGoing = false
   isEnded = false
+  id = null
 
   constructor() {
     makeAutoObservable(this)
   }
 
   startGame() {
+    this.indexOfCurrentLine = 0
+    this.indexOfCurrentWord = 0
+    this.mistakes = 0
+    this.userInput = ""
+    this.isWrong = false
+    this.symCount = 0
+    this.prevUserInput = ""
+    this.seconds = 0
     this.isGoing = true
+    this.isEnded = false
   }
 
   endGame() {
-    // this.fullText = ""
-    // this.indexOfCurrentLine = 0
-    // this.indexOfCurrentWord = 0
-    // this.mistakes = 0
-    // this.songImg = ""
-    // this.songName = ""
-    // this.currentSpeed = 0
-    // this.userInput = ""
-    // this.isWrong = false
-    // this.symCount = 0
-    // this.prevUserInput = ""
-    // this.seconds = 0
     this.isGoing = false
     this.isEnded = true
   }
@@ -67,11 +65,14 @@ class GameStore {
   incrementMistakes() {
     this.mistakes++
   }
-  setSongImg(src) {
-    this.songImg = src
+  setGameImg(src) {
+    this.gameImg = src
   }
-  setSongName(name) {
-    this.songName = name
+  setGameName(name) {
+    this.gameName = name
+  }
+  setId(id) {
+    this.id = id
   }
   setCurrentSpeed(speed) {
     this.currentSpeed = speed
