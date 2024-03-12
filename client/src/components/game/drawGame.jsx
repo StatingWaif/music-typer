@@ -1,5 +1,5 @@
 import DrawText from "./drawText"
-import Input from "./input"
+import { GameInput } from "./gameInput"
 import MainGameSkeleton from "../skeletons/mainGameSkeleton"
 import { observer } from "mobx-react-lite"
 // import gameStore from "../store/gameStore"
@@ -35,7 +35,7 @@ export default observer(function DrawGame() {
           <CenterPart>
             <SongCover />
             <DrawText />
-            <Input />
+            <GameInput />
           </CenterPart>
         </div>
       ) : (

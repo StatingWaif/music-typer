@@ -2,7 +2,6 @@ import Skeleton from "./skeleton"
 import LineSkeleton from "./lineSkeleton"
 import GameInfo from "../game/gameInfo"
 import DrawText from "../game/drawText"
-import Input from "../game/input"
 import Image from "next/image"
 export default function MainGameSkeleton() {
   return (
@@ -24,7 +23,6 @@ export default function MainGameSkeleton() {
             height={"h-[30px]"}
             count={4}
           />
-          {/* <Input /> */}
           <LineSkeleton
             className="ml-8"
             width={"w-[700px]"}

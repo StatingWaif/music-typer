@@ -1,10 +1,13 @@
 import { clsx } from "clsx"
-// import gameStore from "../store/gameStore"
 import { useRef, useEffect } from "react"
 import { observer } from "mobx-react-lite"
-import gameStore from "../../store/gameStore"
+import gameStore from "../../../store/gameStore"
+import endGame from "../../../utils/endGame"
+import { isInputCorrect } from "./isInputCorrect"
+import { countSyms } from "./countSyms"
+import { managingTextLine } from "./managingTextLine"
 
-export default observer(function Input({}) {
+export default observer(function GameInput({}) {
   const inputRef = useRef(null)
   useEffect(() => {
     inputRef.current?.focus()
@@ -14,16 +17,8 @@ export default observer(function Input({}) {
 
     gameStore.setUserInput(typedWord)
 
-    if (
-      gameStore.currentWord.startsWith(typedWord) ||
-      typedWord === gameStore.currentWord + " "
-    ) {
-      if (
-        !gameStore.isWrong &&
-        gameStore.userInput.length > gameStore.prevUserInput.length
-      ) {
-        gameStore.incrementSymCount()
-      }
+    if (isInputCorrect(typedWord)) {
+      countSyms()
       gameStore.setIsWrong(false)
     } else {
       if (!gameStore.isWrong) {
@@ -31,15 +26,7 @@ export default observer(function Input({}) {
       }
       gameStore.setIsWrong(true)
     }
-    if (typedWord === gameStore.currentWord + " ") {
-      if (gameStore.indexOfCurrentWord !== gameStore.currentLine.length - 1)
-        gameStore.incrementIndexOfCurrentWord()
-      else {
-        gameStore.resetIndexOfCurrentWord()
-        gameStore.incrementIndexOfCurrentLine()
-      }
-      gameStore.setUserInput("")
-    }
+    managingTextLine(typedWord)
   }
 
   return (

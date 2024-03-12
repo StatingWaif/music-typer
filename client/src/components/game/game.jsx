@@ -33,5 +33,13 @@ export default observer(function Game({ id }) {
       }
     }
   }, [])
-  return <>{gameStore.isGoing ? <DrawGame /> : <EndGameWindow />}</>
+  return (
+    <>
+      {gameStore.isGoing && !gameStore.isEnded ? (
+        <DrawGame />
+      ) : (
+        <EndGameWindow />
+      )}
+    </>
+  )
 })

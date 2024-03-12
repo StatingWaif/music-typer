@@ -14,6 +14,7 @@ class GameStore {
   prevUserInput = ""
   seconds = 0
   isGoing = false
+  isEnded = false
 
   constructor() {
     makeAutoObservable(this)
@@ -37,6 +38,7 @@ class GameStore {
     // this.prevUserInput = ""
     // this.seconds = 0
     this.isGoing = false
+    this.isEnded = true
   }
 
   incrementSeconds() {
