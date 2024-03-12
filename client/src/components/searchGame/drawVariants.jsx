@@ -1,10 +1,10 @@
 import Link from "next/link"
 import usedLanguages from "../../utils/usedLanguages"
 import Card from "../card"
-import gameStore from "../../store/gameStore"
 import { startGame } from "../../utils/startGame"
 import getPoemByUrl from "../../services/rustih/getPoemByUrl"
 import getSongById from "../../services/genius/getSongById"
+import { addGameToStore } from "../../utils/addGameToStore"
 
 const DrawVariants = ({ variants, toggle }) => {
   return (
@@ -15,11 +15,13 @@ const DrawVariants = ({ variants, toggle }) => {
             onClick={() => {
               if (toggle) {
                 //стихи
-                startGame(getPoemByUrl, variant.link)
+                // startGame(getPoemByUrl, variant)
+                addGameToStore(variant)
               } else {
                 //песни
-                console.log(variant)
-                startGame(getSongById, variant.id)
+                addGameToStore(variant)
+
+                // startGame(getSongById, variant)
               }
             }}
             href={`/play?id=${variant.id || variant.link}`}
@@ -27,7 +29,7 @@ const DrawVariants = ({ variants, toggle }) => {
           >
             <Card
               name={variant.name}
-              img={variant?.thumbnail || variant.img}
+              img={variant.thumbnail || variant.img}
               linesCount={variant.lyrics.length}
               languages={usedLanguages(variant.lyrics)}
               date={variant.date}
