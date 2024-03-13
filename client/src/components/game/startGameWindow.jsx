@@ -28,7 +28,7 @@ export default function StartGameWindow({ id }) {
             </div>
           ) : null}
           <Button
-            className="mx-auto scale-150 mt-36"
+            className="mx-auto w-52 h-16 mt-36 mb-10"
             onClick={() => {
               setStarted(true)
             }}
