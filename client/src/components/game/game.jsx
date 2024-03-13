@@ -6,6 +6,7 @@ import getSongById from "../../services/genius/getSongById"
 import gameStore from "../../store/gameStore"
 import getPoemByUrl from "../../services/rustih/getPoemByUrl"
 import { startGame } from "../../utils/startGame"
+import StartGameWindow from "./startGameWindow"
 
 export default observer(function Game({ id }) {
   useEffect(() => {

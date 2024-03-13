@@ -10,22 +10,22 @@ const routes = [
     name: "Игра",
     route: "/play",
   },
-  {
-    name: "История",
-    route: "/history",
-  },
-  {
-    name: "Корзина",
-    route: "/basket",
-  },
-  {
-    name: "Админская",
-    route: "/admin",
-  },
-  {
-    name: "test",
-    route: "/test",
-  },
+  // {
+  //   name: "История",
+  //   route: "/history",
+  // },
+  // {
+  //   name: "Корзина",
+  //   route: "/basket",
+  // },
+  // {
+  //   name: "Админская",
+  //   route: "/admin",
+  // },
+  // {
+  //   name: "test",
+  //   route: "/test",
+  // },
 ]
 
 const getRouteClass = (route) => {
