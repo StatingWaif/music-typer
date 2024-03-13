@@ -17,6 +17,10 @@ export default observer(function GameInfo({ className }) {
         </p>
         <p>Количество ошибок: {gameStore.mistakes}</p>
         <TypingSpeed />
+        <p>
+          Строка: {gameStore.indexOfCurrentLine + 1} из{" "}
+          {gameStore.fullText.length}
+        </p>
         <Timer />
         <Button onClick={endGame} className={"mt-5"}>
           Закончить

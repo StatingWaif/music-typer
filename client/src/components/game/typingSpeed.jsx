@@ -5,7 +5,7 @@ export default observer(function TypingSpeed() {
   return (
     <div>
       <p>
-        Текущая скорость:{" "}
+        Скорость:{" "}
         {Math.floor((gameStore.symCount / gameStore.seconds) * 60) || 0} зн/мин
       </p>
     </div>

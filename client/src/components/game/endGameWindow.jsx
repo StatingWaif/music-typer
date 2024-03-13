@@ -1,4 +1,3 @@
-// import gameStore from "../store/gameStore"
 import gameStore from "../../store/gameStore"
 import formatTime from "../../utils/formatTime"
 
@@ -12,7 +11,6 @@ export default function EndGameWindow() {
       </p>
       <p>Количество ошибок: {gameStore.mistakes}</p>
       <p>Прошедшее время: {formatTime(gameStore.seconds)}</p>
-      <p></p>
     </div>
   )
 }

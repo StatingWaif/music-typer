@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { observer } from "mobx-react-lite"
 import useInput from "../hooks/useInput"
 import SearchGame from "../components/searchGame/searchGame"
+import StartGameWindow from "../components/game/startGameWindow"
 
 export default observer(function Test() {
   const [poems, setPoems] = useState([])
@@ -13,5 +14,5 @@ export default observer(function Test() {
       // setPoems(await getPoems("Николай гумилев память"))
     })()
   }, [])
-  return <SearchGame />
+  return <StartGameWindow />
 })
