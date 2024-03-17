@@ -9,7 +9,7 @@ export default function useInput(initialValue) {
     ref.current?.focus()
   }, [])
 
-  const className = "text-4xl p-3 bg-slate-600"
+  const className = "text-4xl p-3 bg-slate-600 max-w-full"
   const spellCheck = false
   return {
     ref,

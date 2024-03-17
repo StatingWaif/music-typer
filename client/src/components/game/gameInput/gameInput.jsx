@@ -31,19 +31,20 @@ export default observer(function GameInput({}) {
 
   return (
     <>
-      <input
-        ref={inputRef}
-        className={clsx(
-          "text-4xl p-3 mt-5",
-          gameStore.isWrong ? "bg-red-800" : "bg-slate-600"
-        )}
-        type="input"
-        placeholder="Набирайте текст!"
-        size={30}
-        spellCheck={false}
-        value={gameStore.userInput}
-        onChange={handleInputChange}
-      />
+      <div className="px-2">
+        <input
+          ref={inputRef}
+          className={clsx(
+            "text-4xl p-3 mt-5 w-screen max-w-[600px] ",
+            gameStore.isWrong ? "bg-red-800" : "bg-slate-600"
+          )}
+          type="input"
+          placeholder="Набирайте текст!"
+          spellCheck={false}
+          value={gameStore.userInput}
+          onChange={handleInputChange}
+        />
+      </div>
     </>
   )
 })

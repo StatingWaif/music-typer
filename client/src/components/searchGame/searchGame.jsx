@@ -46,7 +46,7 @@ export default function SearchGame() {
   }, [search.value, toggle.isChecked])
   return (
     <div className="flex flex-col">
-      <div className="flex justify-center mt-10 gap-5">
+      <div className="flex justify-center mt-10 gap-5 m-3">
         <input {...search} placeholder="Поиск" />
       </div>
       <div className="pt-5 self-center flex gap-2 text-2xl">

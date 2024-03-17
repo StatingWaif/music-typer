@@ -10,8 +10,8 @@ import gameStore from "../../store/gameStore"
 export default observer(function GameInfo({ className }) {
   return (
     <span className={clsx(className, "gap-5 flex flex-col")}>
-      <div className="text-2xl flex flex-col gap-2 max-w-fit">
-        <p className="max-w-xl">
+      <div className="text-2xl flex flex-col gap-2 ">
+        <p className="">
           Название:{" "}
           <span className="text-orange-400">{gameStore.gameName}</span>
         </p>
@@ -22,7 +22,7 @@ export default observer(function GameInfo({ className }) {
           {gameStore.fullText.length}
         </p>
         <Timer />
-        <Button onClick={endGame} className={"mt-5"}>
+        <Button onClick={endGame} className={"mt-5 self-center lg:self-start"}>
           Закончить
         </Button>
       </div>

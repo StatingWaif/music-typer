@@ -29,7 +29,7 @@ export default observer(function DrawText() {
   }
 
   return (
-    <div className="-z-10 border rounded-md p-5 min-w-[600px] text-center">
+    <div className="-z-10 border rounded-md p-5 text-center w-screen max-w-[600px] ">
       {text.map((line, lineIndex) => (
         <div
           key={lineIndex}
