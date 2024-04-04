@@ -2,22 +2,20 @@ import { $authHost, $host } from "."
 import addToLocalStorage from "../utils/localStorage/addToLocalStorage"
 
 export const registration = async (name, email, password) => {
-  $host
+  return $host
     .post("api/user/registration", {
       name,
       email,
       password,
     })
-    .then((response) => addToLocalStorage(response.data.token, "token"))
-    .catch((data) => console.log(data))
+    .then((data) => addToLocalStorage(data.data.token, "token"))
 }
 
 export const login = async (name, password) => {
-  $authHost
+  return $authHost
     .post("api/user/login", {
       name,
       password,
     })
-    .then((response) => addToLocalStorage(response.data.token, "token"))
-    .catch((data) => console.log(data))
+    .then((data) => addToLocalStorage(data.data.token, "token"))
 }

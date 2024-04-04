@@ -11,7 +11,9 @@ export default function Registration() {
   const repeatPassword = useInput("")
   const handleClick = () => {
     if (password.value === repeatPassword.value) {
-      registration(username.value, email.value, password.value)
+      registration(username.value, email.value, password.value).catch((data) =>
+        console.log(data.response.data.message)
+      )
     } else {
       alert("Пароли не совпадают!")
     }
