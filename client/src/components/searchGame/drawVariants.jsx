@@ -11,31 +11,19 @@ const DrawVariants = ({ variants, toggle }) => {
     <div className="flex flex-wrap justify-center gap-14 mt-10  w-2/3 mx-auto rounded-md p-5">
       {variants.map((variant) =>
         variant.lyrics.length ? (
-          <Link
+          <Card
             onClick={() => {
-              if (toggle) {
-                //стихи
-                // startGame(getPoemByUrl, variant)
-                addGameToStore(variant)
-              } else {
-                //песни
-                addGameToStore(variant)
-
-                // startGame(getSongById, variant)
-              }
+              addGameToStore(variant)
             }}
-            href={`/play?id=${variant.id || variant.link}`}
-            key={variant.id || variant.name}
-          >
-            <Card
-              name={variant.name}
-              img={variant.thumbnail || variant.img}
-              linesCount={variant.lyrics.length}
-              languages={usedLanguages(variant.lyrics)}
-              date={variant.date}
-              pageViews={variant.pageViews}
-            />
-          </Link>
+            key={variant.id || variant.link}
+            link={`/play?id=${variant.id || variant.link}`}
+            name={variant.name}
+            img={variant.thumbnail || variant.img}
+            linesCount={variant.lyrics.length}
+            languages={usedLanguages(variant.lyrics)}
+            date={variant.date}
+            pageViews={variant.pageViews}
+          />
         ) : null
       )}
     </div>

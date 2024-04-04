@@ -4,33 +4,37 @@ import clsx from "clsx"
 import Button from "./ui/button"
 import usedLanguages from "../utils/usedLanguages"
 import formatDate from "../utils/formatDate"
+import { addGameToStore } from "../utils/addGameToStore"
 
 export default function Card({
   link = "#",
+  onClick,
   name,
   speed = 400,
   mistakes = 55,
   desc,
   img,
   linesCount,
-  languages,
+  languages = ["other"],
   date,
   pageViews,
 }) {
   return (
-    <CardContainer>
-      <CardImage img={img} name={name} />
-      <PopUp
-        name={name}
-        speed={speed}
-        desc={desc}
-        mistakes={mistakes}
-        linesCount={linesCount}
-        languages={languages}
-        date={date}
-        pageViews={pageViews}
-      />
-    </CardContainer>
+    <Link onClick={onClick} href={link}>
+      <CardContainer>
+        <CardImage img={img} name={name} />
+        <PopUp
+          name={name}
+          speed={speed}
+          desc={desc}
+          mistakes={mistakes}
+          linesCount={linesCount}
+          languages={languages}
+          date={date}
+          pageViews={pageViews}
+        />
+      </CardContainer>
+    </Link>
   )
 }
 
@@ -120,9 +124,4 @@ function CardImage({ img, name }) {
       className="object-cover transition-all duration-500 group-hover:-rotate-3 group-hover:scale-110"
     />
   )
-}
-
-function ProductLink({ children, link }) {
-  // return <Link href={link || "/product"}>{children}</Link>
-  return <>{children}</>
 }

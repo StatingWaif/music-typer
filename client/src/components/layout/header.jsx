@@ -1,6 +1,7 @@
 import clsx from "clsx"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import userStore from "../../store/userStore"
 const routes = [
   {
     name: "Главная",
@@ -10,14 +11,14 @@ const routes = [
     name: "Игра",
     route: "/play",
   },
-  // {
-  //   name: "История",
-  //   route: "/history",
-  // },
-  // {
-  //   name: "Корзина",
-  //   route: "/basket",
-  // },
+  {
+    name: "История",
+    route: "/history",
+  },
+  {
+    name: "Авторизация",
+    route: "/auth",
+  },
   // {
   //   name: "Админская",
   //   route: "/admin",
@@ -41,16 +42,19 @@ const getRouteClass = (route) => {
       : ""
   )
 }
-
+const isAuth = false
 export function Header() {
   return (
     <header className="sticky top-0 z-50 flex h-20 w-full items-center justify-center bg-slate-800 shadow-md">
       <nav className="flex gap-10 text-xl font-semibold text-slate-50">
-        {routes.map(({ name, route }) => (
-          <Link className={getRouteClass(route)} href={route} key={route}>
-            {name}
-          </Link>
-        ))}
+        {routes.map(
+          ({ name, route }) =>
+            (route !== "/auth" || !isAuth) && (
+              <Link className={getRouteClass(route)} href={route} key={route}>
+                {name}
+              </Link>
+            )
+        )}
       </nav>
     </header>
   )

@@ -17,7 +17,12 @@ export default function StartGameWindow({ id }) {
           {gameStore.id ? (
             <div className="bg-slate-600 min-h-52 w-2/3 mx-auto mt-5 text-2xl flex flex-col gap-3 p-5 items-center rounded-md">
               {gameStore.gameImg ? (
-                <Image src={gameStore.gameImg} width={300} height={300} />
+                <Image
+                  src={gameStore.gameImg}
+                  width={300}
+                  height={300}
+                  alt={`cover of ${gameStore.gameName}`}
+                />
               ) : null}
               {gameStore.gameName ? (
                 <p className="text-center">{gameStore.gameName}</p>

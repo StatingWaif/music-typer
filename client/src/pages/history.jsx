@@ -1,42 +1,41 @@
 import { useEffect, useState } from "react"
 import Card from "../components/card"
 import getSongById from "../services/genius/getSongById"
+import getFromLocalStorage from "../utils/localStorage/getFromLocalStorage"
+import axios from "axios"
 
 export default function History() {
-  const [data, setData] = useState([])
+  const [history, setHistory] = useState([])
 
   useEffect(() => {
-    const ids = [
-      "3807675",
-      "7464144",
-      "7977264",
-      "3066820",
-      "4345880",
-      "2920329",
-    ]
-    ids.forEach((id) => {
-      getSongById(id)
-        .then((music) =>
-          // data.push({ id: id, img: music.name, name: music.name })
-          setData((prev) => [
-            ...prev,
-            { id: id, img: music.img, name: music.name },
-          ])
-        )
-        .then(() => console.log(data))
-    })
+    axios
+      .get("http://localhost:7000/api/statistics/getAll", {
+        headers: {
+          Authorization: `Bearer ${getFromLocalStorage("token")}`,
+        },
+      })
+      // .then((data) => setHistory(data))
+      .then((data) => setHistory(JSON.parse(data.request.response)))
   }, [])
+  // const history = getFromLocalStorage("history").reverse()
+  // const history =
 
   return (
     <>
       <div className="mx-auto mt-5">
-        <p className="text-center text-5xl">Прошлые игры</p>
+        <h1 className="text-center text-5xl">Прошлые игры</h1>
       </div>
-      <div className="flex gap-20 flex-wrap mt-10 p-5 justify-center">
-        {data.map((element) => (
-          <Card key={element.id} img={element.img} name={element.name} />
-        ))}
-      </div>
+      <main className="flex gap-20 flex-wrap mt-10 p-5 justify-center">
+        {history.length
+          ? history.map((element, index) => (
+              <Card
+                key={index}
+                img={element.text.img}
+                name={element.text.name}
+              />
+            ))
+          : null}
+      </main>
     </>
   )
 }

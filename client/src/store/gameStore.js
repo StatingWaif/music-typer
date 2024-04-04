@@ -94,6 +94,10 @@ class GameStore {
     this.symCount++
   }
 
+  get linesCount() {
+    return this.fullText.length
+  }
+
   get currentLine() {
     return this.fullText[this.indexOfCurrentLine].split(" ")
   }
