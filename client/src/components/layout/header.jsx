@@ -2,6 +2,7 @@ import clsx from "clsx"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import userStore from "../../store/userStore"
+import { observer } from "mobx-react-lite"
 const routes = [
   {
     name: "Главная",
@@ -16,8 +17,8 @@ const routes = [
     route: "/history",
   },
   {
-    name: "Авторизация",
-    route: "/auth",
+    name: () => (userStore.isAuth ? "Выйти" : "Авторизация"),
+    route: () => (userStore.isAuth ? "/logout" : "/auth"),
   },
   // {
   //   name: "Админская",
@@ -42,20 +43,21 @@ const getRouteClass = (route) => {
       : ""
   )
 }
-const isAuth = false
-export function Header() {
+const Header = observer(() => {
   return (
     <header className="sticky top-0 z-50 flex h-20 w-full items-center justify-center bg-slate-800 shadow-md">
       <nav className="flex gap-10 text-xl font-semibold text-slate-50">
-        {routes.map(
-          ({ name, route }) =>
-            (route !== "/auth" || !isAuth) && (
-              <Link className={getRouteClass(route)} href={route} key={route}>
-                {name}
-              </Link>
-            )
-        )}
+        {routes.map(({ name, route }) => {
+          const routeName = typeof name === "function" ? name() : name
+          const href = typeof route === "function" ? route() : route
+          return (
+            <Link className={getRouteClass(route)} href={href} key={route}>
+              {routeName}
+            </Link>
+          )
+        })}
       </nav>
     </header>
   )
-}
+})
+export { Header }

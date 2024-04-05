@@ -13,7 +13,7 @@ export default observer(function Game({ id }) {
     if (/\d+/.test(id)) {
       startGame(getSongById, id)
     } else {
-      startGame(getPoemByUrl, id)
+      startGame(getPoemByUrl, id, true)
     }
   }, [])
   return <>{!gameStore.isEnded ? <DrawGame /> : <EndGameWindow />}</>

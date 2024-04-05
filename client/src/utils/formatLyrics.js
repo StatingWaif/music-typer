@@ -3,6 +3,7 @@ const formatLyrics = (lyrics) => {
     .trim()
     .replaceAll(/\[.*?\]/g, "")
     .replaceAll(/  /g, " ")
+    .replaceAll(/ /g, " ")
     .replaceAll(/ +/g, " ")
     .replaceAll(/[«»“„]/g, '"')
     .replaceAll("’", "'")

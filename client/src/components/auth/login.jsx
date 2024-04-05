@@ -1,37 +1,71 @@
+import { useState } from "react"
 import useInput from "../../hooks/useInput"
-import { $authHost } from "../../http"
+import { login } from "../../http/userApi"
 import Button from "../ui/button"
+import clsx from "clsx"
 
-export default function Login() {
+export default function Login({ setRegistration }) {
   const username = useInput("")
   const password = useInput("")
+  const [tryed, setTryed] = useState(false)
+  // const [errorMessage, setErrorMessage] = useState("")
+
   const handleClick = () => {
-    $authHost
-      .post("api/user/login", {
-        name: username.value,
-        password: password.value,
-      })
-      .then((response) => {
-        const token = response.data.token
-        addToLocalStorage(token, "token")
-      })
-      .catch((data) =>
-        console.log(data.response.status, data.response.statusText)
-      )
+    if (!username.value || !password.value) {
+      setTryed(true)
+      alert("Заполните все поля")
+      return
+      // setErrorMessage((prev) => prev + " Нет юзернейма")
+    }
+    // setErrorMessage((prev) => prev + " Нет пароля")
+    login(username.value, password.value).catch((data) => {
+      let message
+      try {
+        message = data.response.data.message
+        const status = data.response.status
+        status !== 200 && alert("Неверные данные")
+      } catch (e) {
+        message = data.message
+        console.log(message)
+        alert("Ошибка на сервере. Попробуйте позже")
+      }
+    })
   }
   return (
     <div className="flex justify-center my-auto">
       <div className="flex flex-col w-96 gap-5">
         <label>
-          Логин <input {...username}></input>
+          Логин{" "}
+          <input
+            {...username}
+            className={clsx(
+              username.className,
+              tryed && !username.value && "bg-red-600"
+            )}
+          ></input>
         </label>
         <label>
-          Пароль <input {...password} type="password"></input>
+          Пароль{" "}
+          <input
+            {...password}
+            className={clsx(
+              password.className,
+              tryed && !password.value && "bg-red-600"
+            )}
+            type="password"
+          ></input>
         </label>
         <Button className={"self-center"} onClick={handleClick}>
           Войти
         </Button>
+        <Button
+          className={"self-end mt-5"}
+          onClick={() => setRegistration(true)}
+        >
+          Нет аккаунта
+        </Button>
       </div>
+      {/* {errorMessage ? <div>{errorMessage}</div> : null} */}
     </div>
   )
 }

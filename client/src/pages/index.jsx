@@ -9,18 +9,15 @@ import getSongById from "../services/genius/getSongById"
 import { addGameToStore } from "../utils/addGameToStore"
 import gameStore from "../store/gameStore"
 import getPoemByUrl from "../services/rustih/getPoemByUrl"
+import { getPopular } from "../http/textApi"
 
 export default function HomePage() {
   const [popular, setPopular] = useState([])
 
   useEffect(() => {
-    axios
-      .get("http://localhost:7000/api/text/popular", {
-        headers: {
-          Authorization: `Bearer ${getFromLocalStorage("token")}`,
-        },
-      })
+    getPopular()
       .then((data) => setPopular(JSON.parse(data.request.response)))
+      .catch(console.log)
   }, [])
   return (
     <>

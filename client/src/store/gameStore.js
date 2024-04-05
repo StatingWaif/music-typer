@@ -16,6 +16,9 @@ class GameStore {
   isGoing = false
   isEnded = false
   id = null
+  isPoem = false
+  usedLanguages = []
+  date = null
 
   constructor() {
     makeAutoObservable(this)
@@ -37,6 +40,10 @@ class GameStore {
   endGame() {
     this.isGoing = false
     this.isEnded = true
+  }
+
+  setIsPoem(val) {
+    this.isPoem = val
   }
 
   incrementSeconds() {

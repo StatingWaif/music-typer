@@ -5,4 +5,5 @@ export const addGameToStore = (element) => {
   gameStore.setGameName(element.name)
   gameStore.setFullText(element.lyrics)
   gameStore.setId(element.id || element.link)
+  gameStore.setIsPoem(element.isPoem)
 }

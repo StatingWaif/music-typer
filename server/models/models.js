@@ -34,6 +34,7 @@ const Text = sequelize.define("text", {
   lines: { type: DataTypes.INTEGER },
   languages: { type: DataTypes.STRING },
   timesPlayed: { type: DataTypes.INTEGER, defaultValue: 0 },
+  isPoem: { type: DataTypes.BOOLEAN, defaultValue: false },
 });
 const Token = sequelize.define("token", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
