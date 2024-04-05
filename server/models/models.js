@@ -19,11 +19,14 @@ const UserInfo = sequelize.define("user_info", {
 
 const Statistics = sequelize.define("statistics", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  name: { type: DataTypes.STRING, defaultValue: 0 },
+  indexOfCurrentWord: { type: DataTypes.INTEGER, defaultValue: 0 },
+  indexOfCurrentLine: { type: DataTypes.INTEGER, defaultValue: 0 },
   mistakes: { type: DataTypes.INTEGER, defaultValue: 0 },
   seconds: { type: DataTypes.INTEGER, defaultValue: 0 },
-  words: { type: DataTypes.INTEGER, defaultValue: 0 },
   lines: { type: DataTypes.INTEGER, defaultValue: 0 },
   completed: { type: DataTypes.BOOLEAN, defaultValue: false },
+  isPoem: { type: DataTypes.BOOLEAN, defaultValue: false },
 });
 
 const Text = sequelize.define("text", {

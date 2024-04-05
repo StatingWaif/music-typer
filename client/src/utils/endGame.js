@@ -3,6 +3,7 @@ import gameStore from "../store/gameStore"
 import addToLocalStorage from "./localStorage/addToLocalStorage"
 import getFromLocalStorage from "./localStorage/getFromLocalStorage"
 import { addGame } from "../http/statisticsApi"
+import userStore from "../store/userStore"
 
 export default function endGame() {
   gameStore.endGame()
@@ -23,5 +24,5 @@ export default function endGame() {
     return res
   }, {})
 
-  addGame(playedGame).catch(console.log)
+  userStore.isAuth && addGame(playedGame).catch(console.log)
 }

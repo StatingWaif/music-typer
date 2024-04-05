@@ -6,13 +6,25 @@ const { Op } = require("sequelize");
 
 class StatisticsController {
   async add(req, res, next) {
-    const { mistakes, name, seconds, words, completed, gameId, img, lines } =
-      req.body;
+    // const { mistakes, name, seconds, words, completed, gameId, img, lines } =
+    //   req.body;
+    const {
+      gameId,
+      name,
+      img,
+      indexOfCurrentLine,
+      indexOfCurrentWord,
+      mistakes,
+      seconds,
+      lines,
+      completed,
+      isPoem,
+    } = req.body;
     const user = req.user;
     if (!gameId) {
       return next(ApiError.badRequest("Not all data"));
     }
-    //проверку на реальность законченной игры которая вносится в бд
+    //НАДО проверку на реальность законченной игры которая вносится в бд
     let text = await Text.findOne({ where: { gameId } });
     if (!text) {
       text = await Text.create({
@@ -23,10 +35,14 @@ class StatisticsController {
       });
     }
     await Statistics.create({
+      name,
+      indexOfCurrentLine,
+      indexOfCurrentWord,
       mistakes,
       seconds,
-      words,
+      lines,
       completed,
+      isPoem,
       userId: user.id,
       textId: text.id,
     });
