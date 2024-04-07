@@ -11,9 +11,9 @@ export default function usedLanguages(lyrics) {
     hasEng = hasEng || eng.test(line)
     hasOther = hasOther || !regex.test(line)
   })
-  const langs = []
-  hasRus && langs.push("rus")
-  hasEng && langs.push("eng")
-  hasOther && langs.push("other")
+  const langs = { rus: false, eng: false, other: false }
+  if (hasRus) langs.rus = true
+  if (hasEng) langs.eng = true
+  if (hasOther) langs.other = true
   return langs
 }

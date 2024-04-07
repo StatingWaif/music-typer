@@ -3,11 +3,13 @@ import useInput from "../../hooks/useInput"
 import { login } from "../../http/userApi"
 import Button from "../ui/button"
 import clsx from "clsx"
+import { useRouter } from "next/router"
 
 export default function Login({ setRegistration }) {
   const username = useInput("")
   const password = useInput("")
   const [tryed, setTryed] = useState(false)
+  const router = useRouter()
   // const [errorMessage, setErrorMessage] = useState("")
 
   const handleClick = () => {
@@ -18,18 +20,21 @@ export default function Login({ setRegistration }) {
       // setErrorMessage((prev) => prev + " Нет юзернейма")
     }
     // setErrorMessage((prev) => prev + " Нет пароля")
-    login(username.value, password.value).catch((data) => {
-      let message
-      try {
-        message = data.response.data.message
-        const status = data.response.status
-        status !== 200 && alert("Неверные данные")
-      } catch (e) {
-        message = data.message
-        console.log(message)
-        alert("Ошибка на сервере. Попробуйте позже")
-      }
-    })
+    login(username.value, password.value)
+      .then(() => router.push("/play"))
+
+      .catch((data) => {
+        let message
+        try {
+          message = data.response.data.message
+          const status = data.response.status
+          status !== 200 && alert("Неверные данные")
+        } catch (e) {
+          message = data.message
+          console.log(message)
+          alert("Ошибка на сервере. Попробуйте позже")
+        }
+      })
   }
   return (
     <div className="flex justify-center my-auto">

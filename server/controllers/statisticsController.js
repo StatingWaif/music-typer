@@ -18,7 +18,11 @@ class StatisticsController {
       completed,
       isPoem,
       date,
+      pageViews,
       languages,
+      hasRus,
+      hasEng,
+      hasOther,
     } = req.body;
     const user = req.user;
     if (!gameId) {
@@ -35,6 +39,10 @@ class StatisticsController {
         date,
         languages,
         isPoem,
+        pageViews,
+        hasRus,
+        hasEng,
+        hasOther,
       });
     }
     await Statistics.create({

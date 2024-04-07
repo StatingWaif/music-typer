@@ -11,7 +11,15 @@ export default function DrawCards({ elements }) {
         if (!element) {
           return
         }
-        console.log(element)
+        if (element.additionalInfo) {
+          element.date = element.additionalInfo.date
+          element.pageViews = element.additionalInfo.pageViews
+        }
+        element.languages = {
+          rus: element.hasRus,
+          eng: element.hasEng,
+          other: element.hasOther,
+        }
         element.onClick = () => {
           addGameToStore(element)
           ;(async () => {

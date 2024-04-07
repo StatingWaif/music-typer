@@ -2,11 +2,13 @@ import axios from "axios"
 import cheerio from "cheerio"
 import getAuthorImg from "./getAuthorImg"
 import formatLyrics from "../../utils/formatLyrics"
+import usedLanguages from "../../utils/usedLanguages"
 
 export default async function getPoemByUrl(link) {
   link = link.includes(`https://rustih.ru/`)
     ? link
     : `https://rustih.ru/${link}`
+
   const { data } = await axios.get(`api/rustihPage?url=${link}`)
   const $ = cheerio.load(data)
 
@@ -31,5 +33,6 @@ export default async function getPoemByUrl(link) {
     const line = formatLyrics($element.text())
     !flag && poem.lyrics.push(...line.split("\n"))
   })
+  poem.languages = usedLanguages(poem.lyrics)
   return poem
 }

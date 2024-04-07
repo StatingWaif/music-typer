@@ -23,10 +23,14 @@ export default function History() {
             const text = el?.text
             el.isPoem = text?.isPoem
             el.date = text?.date
+            el.pageViews = text?.pageViews
             el.gameId = text?.gameId
             el.timesPlayed = text?.timesPlayed
             el.img = text?.img
             el.lines = text?.lines
+            el.hasRus = text?.hasRus
+            el.hasEng = text?.hasEng
+            el.hasOther = text?.hasOther
             return el
           })}
         />

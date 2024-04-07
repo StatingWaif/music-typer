@@ -1,9 +1,11 @@
+import usedLanguages from "../../utils/usedLanguages"
 import getSongLyricsByUrl from "./getSongLyricsByUrl"
 export default async function getSongById(songId, signal) {
   const data = await fetch(
     `/api/genius?url=https://api.genius.com/songs/${songId}`,
     { signal }
   ).then((data) => data.json())
+
   const result = data.data.response.song
 
   const img = result.song_art_image_url
@@ -13,8 +15,20 @@ export default async function getSongById(songId, signal) {
   const lyrics = rawLyrics.split("\n").filter((line) => line.trim())
   const gameId = songId
   const pageViews = result.stats.pageviews
-  const date = result.release_date_components
+  let date = result.release_date.split("-")
+  date = `${date[2]}.${date[1]}.${date[0]}`
   const isPoem = false
   const additionalInfo = { pageViews, date }
-  return { gameId, img, thumbnail, name, lyrics, isPoem, additionalInfo }
+  const languages = usedLanguages(lyrics)
+
+  return {
+    gameId,
+    img,
+    thumbnail,
+    name,
+    lyrics,
+    isPoem,
+    languages,
+    additionalInfo,
+  }
 }

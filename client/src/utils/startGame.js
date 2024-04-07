@@ -6,6 +6,7 @@ export const startGame = (getGame, id) => {
     gameStore.startGame()
   } else {
     getGame(id).then((game) => {
+      console.log(game)
       addGameToStore(game)
       gameStore.startGame()
     })

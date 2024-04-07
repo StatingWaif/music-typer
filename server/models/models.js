@@ -31,12 +31,14 @@ const Text = sequelize.define("text", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   gameId: { type: DataTypes.STRING },
   date: { type: DataTypes.STRING },
+  pageViews: { type: DataTypes.INTEGER },
   name: { type: DataTypes.STRING },
   img: { type: DataTypes.STRING },
   lines: { type: DataTypes.INTEGER },
-  languages: { type: DataTypes.STRING },
   timesPlayed: { type: DataTypes.INTEGER, defaultValue: 0 },
   isPoem: { type: DataTypes.BOOLEAN, defaultValue: false },
+  hasRus: { type: DataTypes.BOOLEAN, defaultValue: false },
+  hasEng: { type: DataTypes.BOOLEAN, defaultValue: false },
 });
 const Token = sequelize.define("token", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },

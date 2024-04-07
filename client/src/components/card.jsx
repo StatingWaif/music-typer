@@ -11,8 +11,8 @@ export default function Card({ obj }) {
   const mistakes = obj.mistakes ?? 55
   const desc = obj.desc
   const img = obj.img
-  const linesCount = obj.lines
-  const languages = obj.languages ?? ["other"]
+  const linesCount = obj.lines ?? obj.lyrics.length
+  const languages = obj.languages ?? {}
   const date = obj.date
   const pageViews = obj.pageViews
   return (
@@ -53,7 +53,12 @@ function BriefDescription({ name, speed, mistakes, linesCount, languages }) {
         <p className="max-w-32 line-clamp-2">Кол-во строк: {linesCount}</p>
         {/* <p className="truncate max-w-32">Ошибки: {mistakes}</p> */}
         <p className="truncate max-w-32 text-orange-600">
-          {languages.join(", ")}
+          {Object.keys(languages)
+            .reduce((acc, key) => {
+              languages[key] && acc.push(key)
+              return acc
+            }, [])
+            .join(", ")}
         </p>
       </div>
     </div>
@@ -68,7 +73,7 @@ function LongDescription({ desc, date, pageViews }) {
     w-full h-full "
     >
       <div>
-        {date && <p>Дата: {formatDate(date)}</p>}
+        {date && <p>Дата: {date}</p>}
         {pageViews && <p>Просмотры: {pageViews}</p>}
       </div>
     </div>

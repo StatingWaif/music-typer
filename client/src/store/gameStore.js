@@ -17,9 +17,12 @@ class GameStore {
   isEnded = false
   id = null
   isPoem = false
-  usedLanguages = []
   date = null
+  pageViews = null
   fullEnd = false
+  hasRus = false
+  hasEng = false
+  hasOther = false
 
   constructor() {
     makeAutoObservable(this)
@@ -36,6 +39,18 @@ class GameStore {
     this.seconds = 0
     this.isGoing = true
     this.isEnded = false
+  }
+
+  setUsedLanguages(obj) {
+    this.hasRus = obj.rus
+    this.hasEng = obj.eng
+    this.hasOther = obj.other
+  }
+  setDate(date) {
+    this.date = date
+  }
+  setPageViews(views) {
+    this.pageViews = views
   }
 
   endGame() {

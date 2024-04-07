@@ -51,6 +51,8 @@ class UserController {
       return next(ApiError.badRequest("Bad password"));
     }
     const token = generateJwt(user.id, user.name, user.email, user.role);
+    const newToken = await Token.findOne({ where: { userId: user.id } });
+    await newToken.update({ access: token });
     return res.json({ token });
   }
   async check(req, res, next) {

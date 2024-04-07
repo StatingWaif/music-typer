@@ -1,7 +1,4 @@
-import axios from "axios"
 import gameStore from "../store/gameStore"
-import addToLocalStorage from "./localStorage/addToLocalStorage"
-import getFromLocalStorage from "./localStorage/getFromLocalStorage"
 import { addGame } from "../http/statisticsApi"
 import userStore from "../store/userStore"
 
@@ -19,6 +16,11 @@ export default function endGame() {
     "linesCount",
     "isPoem",
     "fullEnd",
+    "date",
+    "pageViews",
+    "hasRus",
+    "hasEng",
+    "hasOther",
   ]
   const playedGame = dataNames.reduce((res, name) => {
     res[name] = gameStore[name]
