@@ -1,4 +1,5 @@
 import { $authHost, $host } from "."
+import gameStore from "../store/gameStore"
 import addToLocalStorage from "../utils/localStorage/addToLocalStorage"
 import getFromLocalStorage from "../utils/localStorage/getFromLocalStorage"
 
@@ -12,19 +13,21 @@ export const addGame = async (playedGame) => {
     mistakes: playedGame.mistakes,
     seconds: playedGame.seconds,
     lines: playedGame.linesCount,
-    completed: false,
-    isPoem: false,
+    completed: gameStore.fullEnd,
+    isPoem: gameStore.isPoem,
   }
 
-  return $authHost
-    .post("api/statistics/add", postData)
-    .then(() =>
-      addToLocalStorage(
-        [...getFromLocalStorage("history"), playedGame],
-        "history"
-      )
-    )
-    .then(() => console.log(playedGame))
+  return (
+    $authHost
+      .post("api/statistics/add", postData)
+      // .then(() =>
+      //   addToLocalStorage(
+      //     [...getFromLocalStorage("history"), playedGame],
+      //     "history"
+      //   )
+      // )
+      .then(() => console.log(playedGame))
+  )
 }
 
 export const getAll = async () => {

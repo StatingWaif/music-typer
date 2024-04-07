@@ -6,14 +6,13 @@ import getSongById from "../../services/genius/getSongById"
 import gameStore from "../../store/gameStore"
 import getPoemByUrl from "../../services/rustih/getPoemByUrl"
 import { startGame } from "../../utils/startGame"
-import StartGameWindow from "./startGameWindow"
 
 export default observer(function Game({ id }) {
   useEffect(() => {
     if (/\d+/.test(id)) {
       startGame(getSongById, id)
     } else {
-      startGame(getPoemByUrl, id, true)
+      startGame(getPoemByUrl, id)
     }
   }, [])
   return <>{!gameStore.isEnded ? <DrawGame /> : <EndGameWindow />}</>

@@ -7,6 +7,7 @@ export const managingTextLine = (typedWord) => {
       gameStore.indexOfCurrentLine === gameStore.fullText.length - 1 &&
       gameStore.indexOfCurrentWord === gameStore.currentLine.length - 1
     ) {
+      gameStore.fullEnd()
       endGame()
       return
     }

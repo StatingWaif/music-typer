@@ -1,24 +1,20 @@
 import Image from "next/image"
 import Link from "next/link"
-import clsx from "clsx"
-import Button from "./ui/button"
 import usedLanguages from "../utils/usedLanguages"
 import formatDate from "../utils/formatDate"
-import { addGameToStore } from "../utils/addGameToStore"
 
-export default function Card({
-  link = "#",
-  onClick,
-  name,
-  speed = 400,
-  mistakes = 55,
-  desc,
-  img,
-  linesCount,
-  languages = ["other"],
-  date,
-  pageViews,
-}) {
+export default function Card({ obj }) {
+  const link = `/play?id=${obj.gameId}`
+  const onClick = obj.onClick
+  const name = obj.name
+  const speed = obj.speed ?? 400
+  const mistakes = obj.mistakes ?? 55
+  const desc = obj.desc
+  const img = obj.img
+  const linesCount = obj.lines
+  const languages = obj.languages ?? ["other"]
+  const date = obj.date
+  const pageViews = obj.pageViews
   return (
     <Link onClick={onClick} href={link}>
       <CardContainer>

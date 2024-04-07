@@ -19,6 +19,7 @@ class GameStore {
   isPoem = false
   usedLanguages = []
   date = null
+  fullEnd = false
 
   constructor() {
     makeAutoObservable(this)
@@ -40,6 +41,10 @@ class GameStore {
   endGame() {
     this.isGoing = false
     this.isEnded = true
+  }
+
+  fullEnd() {
+    this.fullEnd = true
   }
 
   setIsPoem(val) {

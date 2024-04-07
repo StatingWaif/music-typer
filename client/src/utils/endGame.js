@@ -18,11 +18,11 @@ export default function endGame() {
     "symCount",
     "linesCount",
     "isPoem",
+    "fullEnd",
   ]
   const playedGame = dataNames.reduce((res, name) => {
     res[name] = gameStore[name]
     return res
   }, {})
-
   userStore.isAuth && addGame(playedGame).catch(console.log)
 }

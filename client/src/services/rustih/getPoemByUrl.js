@@ -16,10 +16,11 @@ export default async function getPoemByUrl(link) {
 
   let flag = false
   const poem = {
-    lyrics: [],
-    name: $("h1").text(),
+    gameId: link.replace("https://rustih.ru/", ""),
     img: authorImg,
-    link: link.replace("https://rustih.ru/", ""),
+    name: $("h1").text(),
+    lyrics: [],
+    isPoem: true,
   }
 
   $('div[class="entry-content poem-text"] p').each((index, element) => {

@@ -7,6 +7,7 @@ import useToggleSwitch from "../../hooks/useToggleSwitch"
 import getPoems from "../../services/rustih/getPoems"
 import DrawVariants from "./drawVariants"
 import NotFoundWindow from "./notFoundWindow"
+import DrawCards from "../drawCards"
 
 export default function SearchGame() {
   const [variants, setVariants] = useState([])

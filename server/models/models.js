@@ -24,14 +24,13 @@ const Statistics = sequelize.define("statistics", {
   indexOfCurrentLine: { type: DataTypes.INTEGER, defaultValue: 0 },
   mistakes: { type: DataTypes.INTEGER, defaultValue: 0 },
   seconds: { type: DataTypes.INTEGER, defaultValue: 0 },
-  lines: { type: DataTypes.INTEGER, defaultValue: 0 },
   completed: { type: DataTypes.BOOLEAN, defaultValue: false },
-  isPoem: { type: DataTypes.BOOLEAN, defaultValue: false },
 });
 
 const Text = sequelize.define("text", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   gameId: { type: DataTypes.STRING },
+  date: { type: DataTypes.STRING },
   name: { type: DataTypes.STRING },
   img: { type: DataTypes.STRING },
   lines: { type: DataTypes.INTEGER },

@@ -6,8 +6,6 @@ const { Op } = require("sequelize");
 
 class StatisticsController {
   async add(req, res, next) {
-    // const { mistakes, name, seconds, words, completed, gameId, img, lines } =
-    //   req.body;
     const {
       gameId,
       name,
@@ -19,6 +17,8 @@ class StatisticsController {
       lines,
       completed,
       isPoem,
+      date,
+      languages,
     } = req.body;
     const user = req.user;
     if (!gameId) {
@@ -32,6 +32,9 @@ class StatisticsController {
         gameId,
         img,
         lines,
+        date,
+        languages,
+        isPoem,
       });
     }
     await Statistics.create({
@@ -40,9 +43,7 @@ class StatisticsController {
       indexOfCurrentWord,
       mistakes,
       seconds,
-      lines,
       completed,
-      isPoem,
       userId: user.id,
       textId: text.id,
     });
