@@ -46,7 +46,7 @@ const getRouteClass = (route) => {
 const Header = observer(() => {
   return (
     <header className="sticky top-0 z-50 flex h-20 w-full items-center justify-center bg-slate-800 shadow-md">
-      <nav className="flex gap-10 text-xl font-semibold text-slate-50">
+      <nav className="flex sm:gap-10 gap-2 sm:text-xl font-semibold text-slate-50">
         {routes.map(({ name, route }) => {
           const routeName = typeof name === "function" ? name() : name
           const href = typeof route === "function" ? route() : route

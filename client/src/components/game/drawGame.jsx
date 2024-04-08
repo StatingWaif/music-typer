@@ -2,12 +2,10 @@ import DrawText from "./drawText"
 import { GameInput } from "./gameInput"
 import MainGameSkeleton from "../skeletons/mainGameSkeleton"
 import { observer } from "mobx-react-lite"
-// import gameStore from "../store/gameStore"
 import GameInfo from "./gameInfo"
 import Image from "next/image"
 import gameStore from "../../store/gameStore"
-// import endGame from "../utils/endGame"
-// import Button from "../ui/button"
+import LoadingSvg from "../icons/loadingSvg"
 
 const SongCover = ({ width = 400, height = 400 }) => (
   <div className="mb-5 max-w-full">
@@ -40,7 +38,10 @@ export default observer(function DrawGame() {
           </CenterPart>
         </div>
       ) : (
-        <MainGameSkeleton />
+        // <MainGameSkeleton />
+        <div className="w-screen h-screen justify-center items-center flex">
+          <LoadingSvg />
+        </div>
       )}
     </>
   )

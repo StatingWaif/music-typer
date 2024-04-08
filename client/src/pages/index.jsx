@@ -11,6 +11,7 @@ import gameStore from "../store/gameStore"
 import getPoemByUrl from "../services/rustih/getPoemByUrl"
 import { getPopular } from "../http/textApi"
 import DrawCards from "../components/drawCards"
+import IndexPopularSkeleton from "../components/skeletons/indexPopularSkeleton"
 
 export default function HomePage() {
   const [popular, setPopular] = useState([])
@@ -33,10 +34,14 @@ export default function HomePage() {
         </Link>
       </div>
       {popular.length ? (
-        <h3 className="text-5xl text-center mt-5">Хайповые</h3>
+        <h3 className="text-5xl text-center mt-10">Хайповые</h3>
       ) : null}
       <div className="flex flex-wrap justify-center gap-14 mt-10  mx-auto rounded-md p-5 mb-5">
-        <DrawCards elements={popular} />
+        {popular.length ? (
+          <DrawCards elements={popular} />
+        ) : (
+          <IndexPopularSkeleton />
+        )}
       </div>
     </>
   )
