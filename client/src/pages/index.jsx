@@ -15,11 +15,18 @@ import IndexPopularSkeleton from "../components/skeletons/indexPopularSkeleton"
 
 export default function HomePage() {
   const [popular, setPopular] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getPopular()
-      .then((data) => setPopular(JSON.parse(data.request.response)))
+      .then((data) => {
+        setPopular(JSON.parse(data.request.response))
+        setLoading(false)
+      })
       .catch(() => console.log("Нет хайпового"))
+      .finally(() => {
+        if (popular.length) setTimeout(() => setLoading(false), 500)
+      })
   }, [])
 
   return (
@@ -33,15 +40,15 @@ export default function HomePage() {
           </Button>
         </Link>
       </div>
-      {popular.length ? (
+      {loading || popular.length ? (
         <h3 className="text-5xl text-center mt-10">Хайповые</h3>
       ) : null}
       <div className="flex flex-wrap justify-center gap-14 mt-10  mx-auto rounded-md p-5 mb-5">
         {popular.length ? (
           <DrawCards elements={popular} />
-        ) : (
+        ) : loading ? (
           <IndexPopularSkeleton />
-        )}
+        ) : null}
       </div>
     </>
   )

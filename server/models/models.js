@@ -39,6 +39,7 @@ const Text = sequelize.define("text", {
   isPoem: { type: DataTypes.BOOLEAN, defaultValue: false },
   hasRus: { type: DataTypes.BOOLEAN, defaultValue: false },
   hasEng: { type: DataTypes.BOOLEAN, defaultValue: false },
+  hasOther: { type: DataTypes.BOOLEAN, defaultValue: false },
 });
 const Token = sequelize.define("token", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },

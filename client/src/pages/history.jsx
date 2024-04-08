@@ -7,11 +7,13 @@ import userStore from "../store/userStore"
 
 export default function History() {
   const [history, setHistory] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getAll()
       .then((data) => setHistory(JSON.parse(data.request.response)))
       .catch(console.log)
+      .finally(() => setTimeout(() => setLoading(false), 500))
   }, [])
 
   return (
@@ -39,7 +41,7 @@ export default function History() {
               return el
             })}
           />
-        ) : userStore.isAuth ? (
+        ) : loading ? (
           <HistorySkeleton />
         ) : null}
       </main>
