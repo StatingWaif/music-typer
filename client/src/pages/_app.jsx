@@ -5,13 +5,16 @@ import { Header, Footer } from "../components/layout"
 import { StrictMode, useEffect } from "react"
 import userStore from "../store/userStore"
 import getFromLocalStorage from "../utils/localStorage/getFromLocalStorage"
+import { check, logout } from "../http/userApi"
 
 const font = Montserrat({ subsets: ["latin", "cyrillic"] })
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
     if (getFromLocalStorage("token")) {
-      userStore.setAuth()
+      check()
+        .then(userStore.setAuth)
+        .catch(() => logout())
     }
   }, [])
   return (

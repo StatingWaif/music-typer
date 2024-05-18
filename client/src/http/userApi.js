@@ -34,3 +34,7 @@ export const logout = async () => {
   localStorage.removeItem("token")
   userStore.logout()
 }
+
+export const check = async () => {
+  return $auth.get("api/user/auth")
+}
