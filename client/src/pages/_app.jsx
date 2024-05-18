@@ -6,6 +6,7 @@ import { StrictMode, useEffect } from "react"
 import userStore from "../store/userStore"
 import getFromLocalStorage from "../utils/localStorage/getFromLocalStorage"
 import { check, logout } from "../http/userApi"
+import Head from "next/head"
 
 const font = Montserrat({ subsets: ["latin", "cyrillic"] })
 
@@ -25,6 +26,9 @@ export default function App({ Component, pageProps }) {
         "flex flex-col min-h-[100vh] text-slate-50"
       )}
     >
+      <Head>
+        <title>Music Typer</title>
+      </Head>
       <Header />
       <Component {...pageProps} />
       <Footer />
