@@ -28,5 +28,5 @@ export const logout = async () => {
 }
 
 export const check = async () => {
-  return $auth.get("api/user/auth")
+  return $authHost.get("api/user/auth")
 }

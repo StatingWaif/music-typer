@@ -12,10 +12,12 @@ const font = Montserrat({ subsets: ["latin", "cyrillic"] })
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
-    if (getFromLocalStorage("token")) {
+    if (localStorage.getItem("token")) {
       check()
-        .then(userStore.setAuth)
-        .catch(() => logout())
+        .then(userStore.setAuth())
+        .catch(() => {
+          logout()
+        })
     }
   }, [])
   return (
